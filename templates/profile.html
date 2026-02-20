@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecisionAI | Profile</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{
+    background:#0b0f1a;
+    color:white;
+    font-family:'Segoe UI', sans-serif;
+    padding-top:80px;
+}
+
+/* NAVBAR */
+.custom-nav{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo-text{
+    background:linear-gradient(90deg,#4dabf7,#9775fa);
+    background-clip:text;
+    color:transparent;
+    font-size:1.2rem;
+    font-weight:600;
+}
+.logo-icon{color:white;}
+
+.nav-link{
+    color:#cbd3f5 !important;
+    font-weight:500;
+}
+
+/* PROFILE CARD */
+.profile-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:calc(100vh - 100px);
+    padding:15px;
+}
+
+.profile-card{
+    width:100%;
+    max-width:520px;
+    background:rgba(255,255,255,0.05);
+    padding:30px;
+    border-radius:18px;
+    backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* INFO BOX */
+.info-box{
+    background:rgba(255,255,255,0.04);
+    padding:16px;
+    border-radius:12px;
+    margin-top:15px;
+}
+
+.label{
+    font-size:0.8rem;
+    color:#9aa4d6;
+}
+
+.value{
+    font-size:1.05rem;
+    font-weight:500;
+    word-break:break-word;
+}
+
+/* MOBILE IMPROVEMENTS */
+@media (max-width:576px){
+
+body{padding-top:70px;}
+
+.profile-card{
+    padding:22px;
+    border-radius:16px;
+}
+
+.logo-text{font-size:1.1rem;}
+
+.value{font-size:1rem;}
+
+.navbar-brand{font-size:1rem;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark px-3 fixed-top custom-nav">
+<div class="container-fluid">
+
+<a class="navbar-brand d-flex align-items-center" href="/dashboard/">
+<i class="bi bi-robot fs-5 me-2"></i>
+<span class="logo-text">DecisionAI</span>
+</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link px-3" href="/dashboard/">
+<i class="bi bi-speedometer2 me-1"></i> Dashboard
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link px-3" href="/history/">
+<i class="bi bi-clock-history me-1"></i> History
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link px-3" href="/profile/">
+<i class="bi bi-person-circle me-1"></i> Profile
+</a>
+</li>
+
+<li class="nav-item mt-2 mt-lg-0 ms-lg-3">
+<form action="/logout/" method="POST">
+{% csrf_token %}
+<button class="btn btn-outline-light btn-sm w-100">Logout</button>
+</form>
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+<!-- PROFILE CONTENT -->
+<div class="profile-wrapper">
+<div class="profile-card text-center">
+
+<h4 class="mb-1">User Profile</h4>
+<p class="text-secondary small">Your account information</p>
+
+<div class="info-box text-start">
+<div class="label">Name</div>
+<div class="value">{{ user.name }}</div>
+</div>
+
+<div class="info-box text-start">
+<div class="label">Email</div>
+<div class="value">{{ user.email }}</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+<script>
+// Load profile
+const profile = JSON.parse(localStorage.getItem("userProfile"));
+if(profile){
+    document.getElementById("displayName").innerText = profile.name || "Not set";
+    document.getElementById("displayEmail").innerText = profile.email || "Not set";
+}
+
+// Active nav highlight
+const links = document.querySelectorAll(".nav-link");
+links.forEach(link=>{
+    if(link.href === window.location.href){
+        link.style.color = "white";
+        link.style.fontWeight = "600";
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

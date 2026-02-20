@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — DecisionAI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{
+    background:#0b0f1a;
+    color:white;
+    font-family:'Segoe UI', sans-serif;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* GLASS CARD */
+.login-card{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:35px;
+    backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+.login-title{
+    font-size:1.8rem;
+    font-weight:600;
+    background:linear-gradient(90deg,#4dabf7,#9775fa);
+    background-clip: text;
+    color:transparent;
+}
+
+/* INPUT */
+.form-control{
+    background:rgba(255,255,255,0.06);
+    border:none;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+}
+
+.form-control::placeholder{
+    color:#b0b8d1;
+}
+
+/* BUTTON */
+.btn-ai{
+    background:linear-gradient(90deg,#4dabf7,#9775fa);
+    border:none;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    width:100%;
+    font-weight:500;
+}
+
+/* LINKS */
+.login-link{
+    color:#9fb3ff;
+    text-decoration:none;
+}
+
+.login-link:hover{
+    text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+<div class="text-center mb-4">
+<i class="bi bi-robot fs-2"></i>
+<div class="login-title mt-2">DecisionAI Login</div>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+</div>
+
+<form method="POST" action="/login/">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+    </div>
+
+    <div class="d-flex justify-content-between mb-3 small">
+        <a href="/forgotpass/" class="login-link">Forgot password?</a>
+        <a href="/register/" class="login-link">Create account</a>
+    </div>
+
+    <button type="submit" class="btn btn-ai">Login</button>
+</form>
+
+
+<div class="text-center mt-4 small opacity-75">
+© 2026 DecisionAI
+</div>
+
+</div>
+
+</body>
+</html>
