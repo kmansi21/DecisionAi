@@ -126,5 +126,5 @@ SESSION_ENGINE="django.contrib.sessions.backends.db"
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 SESSION_COOKIE_AGE=1800
 
-CLIENT=MongoClient("mongodb+srv://Projectdb:mongodb123@projectcluster.lstnmd3.mongodb.net/")
+CLIENT=MongoClient("mongodb_connection")
 DB=CLIENT["DecisionAI"]
